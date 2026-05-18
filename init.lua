@@ -194,6 +194,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Exit insert mode' })
 vim.keymap.set('c', 'jj', '<Esc>', { desc = 'Exit insert mode' })
 
+-- Neo-tree keymap
+
+vim.keymap.set('n', '<C-n>', '<Cmd>Neotree toggle<CR>', { desc = 'Toggle neotree' })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -286,7 +290,7 @@ require('lazy').setup({
     opts = {
       signs = {
         add = { text = '+' }, ---@diagnostic disable-line: missing-fields
-        change = { text = '~' }, ---@diagnostic disable-line: missing-fields
+        change = { text = '|' }, ---@diagnostic disable-line: missing-fields
         delete = { text = '_' }, ---@diagnostic disable-line: missing-fields
         topdelete = { text = '‾' }, ---@diagnostic disable-line: missing-fields
         changedelete = { text = '~' }, ---@diagnostic disable-line: missing-fields
@@ -833,7 +837,7 @@ require('lazy').setup({
     ---@module 'todo-comments'
     ---@type TodoOptions
     ---@diagnostic disable-next-line: missing-fields
-    opts = { signs = false },
+    opts = { signs = true },
   },
 
   { -- Collection of various small independent plugins/modules
@@ -918,14 +922,14 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommended keymaps
+  require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommended keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
