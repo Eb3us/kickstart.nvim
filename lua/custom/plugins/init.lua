@@ -58,12 +58,21 @@ return {
   },
   {
     'akinsho/toggleterm.nvim',
-    keys = {
-      { '<leader>tf', '<cmd>ToggleTerm direction=float<cr>', desc = 'ToggleTerm' },
-      { '<leader>tt', '<cmd>ToggleTerm direction=horizontal<cr>', desc = 'ToggleTerm' },
-      { '<leader>tv', '<cmd>ToggleTerm direction=vertical size=80<cr>', desc = 'ToggleTerm' },
-    },
-    config = function() require('toggleterm').setup {} end,
+    version = '*',
+    config = function()
+      require('toggleterm').setup {}
+      local Terminal = require('toggleterm.terminal').Terminal
+      -- get root directory of the current buffer
+      local dir = vim.fs.root(0, { 'package.json', '.git', '.gitignore' }) or vim.fn.getcwd()
+      local cmdStart = '<cmd>ToggleTerm direction='
+      local float = cmdStart .. 'float ' .. 'dir=' .. dir .. '<cr>'
+      local horizontal = cmdStart .. 'horizontal ' .. 'dir=' .. dir .. '<cr>'
+      local vertical = cmdStart .. 'vertical ' .. 'dir=' .. dir .. ' size=80<cr>'
+      --Keymaps
+      vim.keymap.set('n', '<leader>tf', float, { desc = 'ToggleTerm' })
+      vim.keymap.set('n', '<leader>tt', horizontal, { desc = 'ToggleTerm' })
+      vim.keymap.set('n', '<leader>tv', vertical, { desc = 'ToggleTerm' })
+    end,
   },
   {
     'Exafunction/windsurf.nvim',
