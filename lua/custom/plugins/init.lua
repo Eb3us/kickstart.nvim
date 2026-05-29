@@ -22,27 +22,6 @@ return {
       'rcarriga/nvim-notify',
     },
   },
-  -- Lazygit
-  {
-    'kdheepak/lazygit.nvim',
-    lazy = true,
-    cmd = {
-      'LazyGit',
-      'LazyGitConfig',
-      'LazyGitCurrentFile',
-      'LazyGitFilter',
-      'LazyGitFilterCurrentFile',
-    },
-    -- optional for floating window border decoration
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    },
-    -- setting the keybinding for LazyGit with 'keys' is recommended in
-    -- order to load the plugin when the command is run for the first time
-    keys = {
-      { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
-    },
-  },
   {
     'NachoNievaG/atac.nvim',
     keys = {
@@ -54,24 +33,6 @@ return {
       require('atac').setup {
         dir = '~/.config/atac/callixto/', -- By default, the dir will be set as /tmp/atac
       }
-    end,
-  },
-  {
-    'akinsho/toggleterm.nvim',
-    version = '*',
-    config = function()
-      require('toggleterm').setup {}
-      local Terminal = require('toggleterm.terminal').Terminal
-      -- get root directory of the current buffer
-      local dir = vim.fs.root(0, { 'package.json', '.git', '.gitignore' }) or vim.fn.getcwd()
-      local cmdStart = '<cmd>ToggleTerm direction='
-      local float = cmdStart .. 'float ' .. 'dir=' .. dir .. '<cr>'
-      local horizontal = cmdStart .. 'horizontal ' .. 'dir=' .. dir .. '<cr>'
-      local vertical = cmdStart .. 'vertical ' .. 'dir=' .. dir .. ' size=80<cr>'
-      --Keymaps
-      vim.keymap.set('n', '<leader>tf', float, { desc = 'ToggleTerm' })
-      vim.keymap.set('n', '<leader>tt', horizontal, { desc = 'ToggleTerm' })
-      vim.keymap.set('n', '<leader>tv', vertical, { desc = 'ToggleTerm' })
     end,
   },
   {
