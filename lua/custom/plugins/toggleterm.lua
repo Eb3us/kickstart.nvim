@@ -25,17 +25,17 @@ return {
         vim.cmd(command)
       end
       --Keymaps
-      vim.keymap.set('n', '<leader>tf', float, { desc = 'Floating terminal' })
-      vim.keymap.set('n', '<leader>tt', horizontal, { desc = 'Horizontal terminal' })
-      vim.keymap.set('n', '<leader>tv', vertical, { desc = 'Vertical terminal' })
-      vim.keymap.set('n', '<leader>tn', new_term, { desc = 'New Terminal' })
-      vim.keymap.set('n', '<leader>ts', '<cmd>TermSelect<CR>', { desc = 'Select terminal' })
+      vim.keymap.set('n', '<leader>sf', float, { desc = 'Floating terminal' })
+      vim.keymap.set('n', '<leader>st', horizontal, { desc = 'Horizontal terminal' })
+      vim.keymap.set('n', '<leader>sv', vertical, { desc = 'Vertical terminal' })
+      vim.keymap.set('n', '<leader>sn', new_term, { desc = 'New Terminal' })
+      vim.keymap.set('n', '<leader>ss', '<cmd>TermSelect<CR>', { desc = 'Select terminal' })
       --Custom terminal configs
       -- Lazygit
       local lazygit = Terminal:new { cmd = 'lazygit', hidden = true, direction = 'float' }
       function _lazygit_toggle() lazygit:toggle() end
 
-      vim.api.nvim_set_keymap('n', '<leader>lg', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true, desc = 'LazyGit' })
+      vim.api.nvim_set_keymap('n', '<leader>lg', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true, desc = '[L]azy[G]it' })
     end,
   },
 }

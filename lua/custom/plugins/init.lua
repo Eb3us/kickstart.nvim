@@ -25,7 +25,7 @@ return {
   {
     'NachoNievaG/atac.nvim',
     keys = {
-      { '<leader>at', '<cmd>Atac<cr>', desc = 'Atac' },
+      { '<leader>at', '<cmd>Atac<cr>', desc = '[A][t]ac' },
     },
     dependencies = { 'akinsho/toggleterm.nvim' },
     config = function()
