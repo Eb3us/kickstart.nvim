@@ -36,6 +36,12 @@ return {
       function _lazygit_toggle() lazygit:toggle() end
 
       vim.api.nvim_set_keymap('n', '<leader>lg', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true, desc = '[L]azy[G]it' })
+      -- Gemini
+      local gemini = Terminal:new { cmd = 'gemini', hidden = true, direction = 'float' }
+
+      function _gemini_toggle() gemini:toggle() end
+
+      vim.keymap.set('n', '<leader>aig', '<cmd>lua _gemini_toggle()<CR>', { noremap = true, silent = true, desc = 'Gemini' })
     end,
   },
 }
