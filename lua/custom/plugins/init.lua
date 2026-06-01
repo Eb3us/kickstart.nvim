@@ -23,19 +23,6 @@ return {
     },
   },
   {
-    'NachoNievaG/atac.nvim',
-    keys = {
-      { '<leader>at', '<cmd>Atac<cr>', desc = '[A][t]ac' },
-    },
-    dependencies = { 'akinsho/toggleterm.nvim' },
-    config = function()
-      vim.env.ATAC_KEY_BINDINGS = '~/.config/atac/callixto/vim_key_bindings.toml'
-      require('atac').setup {
-        dir = '~/.config/atac/callixto/', -- By default, the dir will be set as /tmp/atac
-      }
-    end,
-  },
-  {
     'Exafunction/windsurf.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',

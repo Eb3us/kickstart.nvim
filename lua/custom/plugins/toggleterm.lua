@@ -42,6 +42,18 @@ return {
       function _gemini_toggle() gemini:toggle() end
 
       vim.keymap.set('n', '<leader>aig', '<cmd>lua _gemini_toggle()<CR>', { noremap = true, silent = true, desc = 'Gemini' })
+      -- Atac
+      local atac_callixto = Terminal:new {
+        cmd = 'atac -d ~/.config/atac/callixto',
+        hidden = true,
+        direction = 'float',
+        env = { ATAC_KEY_BINDINGS = '~/.config/atac/callixto/vim_key_bindings.toml' },
+      }
+      local cwd = vim.uv.cwd() or vim.fn.getcwd() or ''
+      if cwd:find('callixto-api', 1, true) then
+        function _atac_toggle() atac_callixto:toggle() end
+        vim.keymap.set('n', '<leader>at', '<cmd>lua _atac_toggle()<CR>', { noremap = true, silent = true, desc = 'Atac' })
+      end
     end,
   },
 }
