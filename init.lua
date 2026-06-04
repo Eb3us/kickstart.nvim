@@ -848,6 +848,11 @@ require('lazy').setup({
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
+      -- remove buffer
+
+      require('mini.bufremove').setup()
+
+      vim.keymap.set('n', '<leader>bc', '<cmd>lua MiniBufremove.unshow()<CR>', { desc = '[B]uffer [C]lose' })
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
