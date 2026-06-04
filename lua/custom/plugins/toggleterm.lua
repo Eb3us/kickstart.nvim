@@ -6,12 +6,9 @@ return {
     version = '*',
     config = function()
       require('toggleterm').setup {
-        size = function(term)
-          if term.direction == 'float' then
-            return { height = 0.95, width = 0.8 }
-          end
-          return 20
-        end,
+        float_opts = {
+          height = 28,
+        },
       }
       -- Config
       local Terminal = require('toggleterm.terminal').Terminal
