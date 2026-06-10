@@ -193,6 +193,11 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Exit insert mode' })
 vim.keymap.set('c', 'jj', '<Esc>', { desc = 'Exit insert mode' })
 
+-- next and previous buffer
+
+vim.keymap.set('n', '<leader>bn', '<cmd>bnext<CR>', { desc = '[N]ext [B]uffer ' })
+vim.keymap.set('n', '<leader>bp', '<cmd>bprevious<CR>', { desc = '[P]revious [B]uffer ' })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -321,15 +326,15 @@ require('lazy').setup({
       -- Document existing key chains
       spec = {
         { '<leader>f', group = '[F]ind', mode = { 'n', 'v' } },
-        { '<leader>t', group = '[T]oggle' },
+        { '<leader>i', group = '[I]nlay' },
+        { '<leader>g', group = '[G]it' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } }, -- Enable gitsigns recommended keymaps first
         { '<leader>a', group = '[A]TAC/[A].I.' },
         { '<leader>ai', group = '[[A].[I].' },
-        { '<leader>s', group = '[S]hell' },
+        { '<leader>t', group = '[T]erminal' },
         { '<leader>l', group = '[L]azygit' },
         { '<leader>b', group = '[B]uffer' },
         { '<leader>o', group = '[O]pen' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } }, -- Enable gitsigns recommended keymaps first
         { 'gr', group = 'LSP Actions', mode = { 'n' } },
       },
     },
@@ -580,7 +585,7 @@ require('lazy').setup({
           --
           -- This may be unwanted, since they displace some of your code
           if client and client:supports_method('textDocument/inlayHint', event.buf) then
-            map('<leader>th', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }) end, '[T]oggle Inlay [H]ints')
+            map('<leader>ih', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }) end, '[I]nlay [H]ints toggle')
           end
         end,
       })
@@ -599,7 +604,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = {},
 
         stylua = {}, -- Used to format Lua code
 
@@ -915,7 +920,7 @@ require('lazy').setup({
   --
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommended keymaps

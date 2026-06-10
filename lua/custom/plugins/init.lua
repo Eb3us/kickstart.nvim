@@ -30,6 +30,9 @@ return {
     opts = {},
   },
   {
+    'tpope/vim-abolish',
+  },
+  {
     'Exafunction/windsurf.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',

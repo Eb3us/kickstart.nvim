@@ -6,9 +6,7 @@ return {
     version = '*',
     config = function()
       require('toggleterm').setup {
-        float_opts = {
-          height = 28,
-        },
+        float_opts = { height = 28 },
       }
       -- Config
       local Terminal = require('toggleterm.terminal').Terminal
@@ -29,20 +27,25 @@ return {
         vim.cmd(command)
       end
       --Keymaps
-      vim.keymap.set('n', '<leader>sf', float, { desc = 'Floating terminal' })
-      vim.keymap.set('n', '<leader>st', horizontal, { desc = 'Horizontal terminal' })
-      vim.keymap.set('n', '<leader>sv', vertical, { desc = 'Vertical terminal' })
-      vim.keymap.set('n', '<leader>sn', new_term, { desc = 'New Terminal' })
-      vim.keymap.set('n', '<leader>ss', '<cmd>TermSelect<CR>', { desc = 'Select terminal' })
+      vim.keymap.set('n', '<leader>tf', float, { desc = 'Floating terminal' })
+      vim.keymap.set('n', '<leader>tt', horizontal, { desc = 'Horizontal terminal' })
+      vim.keymap.set('n', '<leader>tv', vertical, { desc = 'Vertical terminal' })
+      vim.keymap.set('n', '<leader>tn', new_term, { desc = 'New Terminal' })
+      vim.keymap.set('n', '<leader>ts', '<cmd>TermSelect<CR>', { desc = 'Select terminal' })
 
       --Custom terminal configs
       -- Lazygit
       local lazygit = Terminal:new { cmd = 'lazygit', hidden = true, direction = 'float' }
       function _lazygit_toggle() lazygit:toggle() end
-      vim.api.nvim_set_keymap('n', '<leader>lg', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true, desc = '[L]azy[G]it' })
+      vim.api.nvim_set_keymap('n', '<leader>lg', '<cmd>lua _lazygit_toggle()<CR>', {
+        noremap = true,
+        silent = true,
+        desc = '[L]azy[G]it',
+      })
 
       -- Gemini
-      local gemini = Terminal:new { cmd = 'gemini', hidden = true, direction = 'float' }
+      local gemini =
+        Terminal:new { cmd = 'gemini', hidden = true, direction = 'float', highlights = { NormalFloat = { link = 'Normal' } }, shade_terminals = false }
       function _gemini_toggle() gemini:toggle() end
       vim.keymap.set('n', '<leader>aig', '<cmd>lua _gemini_toggle()<CR>', { noremap = true, silent = true, desc = '[G]emini' })
 
@@ -60,6 +63,11 @@ return {
       local opencode_chat = Terminal:new { cmd = 'opencode', hidden = true, direction = 'float', dir = '~/.opencode-chats' }
       function _opencode_chat_toggle() opencode_chat:toggle() end
       vim.keymap.set('n', '<leader>aic', '<cmd>lua _opencode_chat_toggle()<CR>', { noremap = true, silent = true, desc = '[Chat] (opencode)' })
+
+      -- Opencode nvim
+      local opencode_nvim = Terminal:new { cmd = 'opencode', hidden = true, direction = 'float', dir = '~/.config/nvim' }
+      function _opencode_nvim_toggle() opencode_nvim:toggle() end
+      vim.keymap.set('n', '<leader>ain', '<cmd>lua _opencode_nvim_toggle()<CR>', { noremap = true, silent = true, desc = '[N]vim (opencode)' })
 
       -- Atac
       local atac_callixto = Terminal:new {
